@@ -1,0 +1,25 @@
+<launch>
+
+    <node pkg="floor_plane_deep" type="floor_plane_extract" name="floor_plane_extract" output="screen">
+      launch-prefix="xterm -e gdb --args">
+      <param name="world_frame" value="/world" />
+      <param name="base_frame" value="/bubbleRob" />
+      <param name="max_range" value="3.0" />
+      <param name="thumb_size" value="32" />
+      <param name="out_dir" value="/home/GTL/tschilla/catkin_ws/project2_out" />
+      <param name="height_threshold" value="0.05" />
+      <param name="min_displacement" value="0.1" />
+      <param name="min_rotation" value="0.1" />
+      <param name="max_image_per_type" value="4000" />
+
+      <param name="above_below_threshold" value="-0.012" />
+      <param name="above_below_ratio" value="0.5" />
+      <param name="unusable_threshold" value="230" />
+
+
+      <remap from="/floor_plane_extract/pointcloud" to="/vrep/depthSensor"/>
+      <remap from="/floor_plane_extract/image" to="/vrep/visionSensor"/>
+      <remap from="/floor_plane_extract/info" to="/vrep/visionSensorInfo"/>
+  </node>
+
+</launch>
